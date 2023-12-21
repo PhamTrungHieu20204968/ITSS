@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useGetQuizQuery, useGetQuestionsOfQuizQuery } from 'app/api/quizService';
 import NavBar from 'Features/User/Components/NavBar/NavBar';
@@ -19,6 +19,13 @@ function Quiz() {
         isError: questionError,
         isLoading: questionLoading,
     } = useGetQuestionsOfQuizQuery(Quiz?.id);
+
+    useEffect(() => {
+        if (!quizLoading && !Quiz) {
+            navigate('/user/lesson/' + params.id);
+            message.error(`This lesson has no quiz!`);
+        }
+    }, []);
 
     if (quizError) {
         return <h1>Something went wrong!</h1>;
@@ -61,7 +68,7 @@ function Quiz() {
             <NavBar></NavBar>
             <div className="quiz">
                 <Question
-                    key={questions[position].id}
+                    key={questions[position]?.id}
                     question={questions[position]}
                     totalScore={score}
                     lifes={lifes}

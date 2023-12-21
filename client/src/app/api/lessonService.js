@@ -3,12 +3,12 @@ export const LessonService = apiService.injectEndpoints({
     endpoints: (builder) => ({
         getLessons: builder.query({
             query: () => `lessons`,
-            providesTags: ['lesson'],
+            providesTags: ['word'],
         }),
 
         getLesson: builder.query({
             query: (id) => `lessons/${id}`,
-            providesTags: ['lesson'],
+            providesTags: ['word'],
         }),
 
         deleteLesson: builder.mutation({
@@ -17,7 +17,7 @@ export const LessonService = apiService.injectEndpoints({
                 method: 'DELETE',
                 headers: headers,
             }),
-            invalidatesTags: ['lesson'],
+            invalidatesTags: ['word'],
         }),
         deleteWordFromLesson: builder.mutation({
             query: ({ id, headers, wordId }) => ({
@@ -25,7 +25,7 @@ export const LessonService = apiService.injectEndpoints({
                 method: 'DELETE',
                 headers: headers,
             }),
-            invalidatesTags: ['lesson'],
+            invalidatesTags: ['word'],
         }),
         updateLesson: builder.mutation({
             query: ({ data, id, headers }) => ({
@@ -34,7 +34,7 @@ export const LessonService = apiService.injectEndpoints({
                 body: data,
                 headers: headers,
             }),
-            invalidatesTags: ['lesson'],
+            invalidatesTags: ['word'],
         }),
         addWordToLesson: builder.mutation({
             query: ({ lessonId, wordId, headers }) => ({
@@ -42,7 +42,7 @@ export const LessonService = apiService.injectEndpoints({
                 method: 'POST',
                 headers: headers,
             }),
-            invalidatesTags: ['lesson'],
+            invalidatesTags: ['word'],
         }),
         createLesson: builder.mutation({
             query: ({ data, headers }) => ({
@@ -51,7 +51,7 @@ export const LessonService = apiService.injectEndpoints({
                 headers: headers,
                 body: data,
             }),
-            invalidatesTags: ['lesson'],
+            invalidatesTags: ['word'],
         }),
     }),
 });

@@ -43,9 +43,9 @@ const LearnLessonUser = () => {
                 <div className="lesson-name-div">
                     <div className="lesson-name">{data[0].name}</div>
                     <div className="btn">
-                        <Button onClick={() => navigate(`/user/quiz/${params.id}`)}>クイズ</Button>
+                        <Button onClick={() => navigate(`/user/quiz/${params.id}`)}>Quiz</Button>
                         <Button onClick={() => navigate(`/user/lesson/${params.id}/flashcard`)}>
-                            フラッシュカード
+                            Flash card
                         </Button>
                     </div>
                 </div>

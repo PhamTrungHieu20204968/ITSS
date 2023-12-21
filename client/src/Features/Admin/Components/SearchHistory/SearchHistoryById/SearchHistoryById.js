@@ -48,16 +48,7 @@ const GetSearchHistoryById = () => {
         },
     ];
 
-    let orderIndex = 1; // Biến để theo dõi số thứ tự
-
-    const tableData = userData?.flatMap((record) =>
-        record.Words.map((word) => ({
-            key: word.id,
-            index: orderIndex++, // Sử dụng biến orderIndex để đảm bảo thứ tự tăng dần
-            word: word.word,
-            furigana: word.furigana,
-        })),
-    );
+    console.log(userData);
 
     return (
         <div className="search-history-by-id">
@@ -71,7 +62,15 @@ const GetSearchHistoryById = () => {
                         <h1>User: {userData[0].name}</h1>
                     </div>
                     <div className="search-history-by-id-table">
-                        <Table columns={columns} dataSource={tableData} />
+                        <Table
+                            columns={columns}
+                            dataSource={userData[0].Words?.map((word, index) => ({
+                                key: word.id,
+                                index: index+1,
+                                word: word.word,
+                                furigana: word.furigana,
+                            }))}
+                        />
                     </div>
                 </div>
             </div>
